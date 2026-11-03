@@ -16,9 +16,9 @@ Estados: ✅ cumplido · 🟡 parcial · ⏳ planeado (hito indicado)
 | 10 | 3+ componentes reutilizables con props tipadas, usados | `Screen`, `AppButton`, `StateMessage`, `ProductCard` | `src/components/` | ✅ | Hito 1 |
 | 11 | Listas y tarjetas, búsqueda o filtro | Grilla del catálogo; búsqueda y filtro por colección | `src/app/(drawer)/(tabs)/index.tsx` | 🟡 | Hito 1 / 2 |
 | 12 | Indicadores de carga, vacíos y alternativa sin imagen | Estados vacíos y placeholder de imagen; carga en el hito 3 | `StateMessage`, `ProductCard` | 🟡 | Hito 1 / 3 |
-| 13 | useState / useEffect con propósito | Fallback de imagen, ocultar el splash al cargar fuentes | `ProductCard`, `_layout.tsx` | 🟡 | Hito 1 / 2 |
-| 14 | Hook propio | `useQuote` (cotización) y `useLocationTracking` (GPS) | `src/features/*/hooks/` | ⏳ | Hito 2 / 3 |
-| 15 | Zustand para estado compartido | Favoritos y solicitud en curso | `src/store/` | ⏳ | Hito 2 |
+| 13 | useState / useEffect con propósito | Fallback de imagen, ocultar el splash al cargar fuentes, sincronizar idioma | `ProductCard`, `_layout.tsx`, `useLanguageSync.ts` | ✅ | Hito 1 |
+| 14 | Hook propio | `useLanguageSync` (entradas, estado, efectos y resultado documentados); luego `useQuote` y `useLocationTracking` | `src/i18n/useLanguageSync.ts` | 🟡 | Hito 1 / 2 / 3 |
+| 15 | Zustand para estado compartido | Preferencia de idioma persistida (AsyncStorage); luego favoritos y solicitud en curso | `src/store/settings.store.ts` | 🟡 | Hito 1 / 2 |
 | 16 | Contador contextual con límites | Cantidad por pieza (1–5 o stock) | Detalle / Cotización | ⏳ | Hito 2 |
 | 17 | Cálculo contextual validado | Subtotal + recargo sur mesure + envío | Cotización | ⏳ | Hito 2 |
 | 18 | Formulario con validaciones | Datos de contacto y notas | Formulario | ⏳ | Hito 2 |
@@ -30,3 +30,4 @@ Estados: ✅ cumplido · 🟡 parcial · ⏳ planeado (hito indicado)
 | 24 | Persistencia tras cerrar la app | Solicitudes en Firestore; favoritos con persistencia local | Mis solicitudes | ⏳ | Hito 4 |
 | 25 | Sin conexión / sin confirmaciones falsas | Detección de red y errores de envío | Formulario | ⏳ | Hito 4 |
 | 26 | `.env.template`, README, informe, bitácora, prueba con el cliente | Documentación | `README.md`, `docs/` | 🟡 | Hito 1 / 4 |
+| — | *Extra del cliente:* francés como idioma principal + español | i18next + expo-localization; selector FR/ES en el Drawer, persistido | `src/i18n/`, `LanguageSwitcher.tsx` | ✅ | `docs/evidencias/2026-11-03-*` |

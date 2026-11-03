@@ -9,9 +9,5 @@ export interface Product {
   imageUrl: string | null;
 }
 
+/** La etiqueta visible está en las traducciones: `productType.<tipo>`. */
 export type ProductType = 'earrings' | 'bracelet';
-
-export const productTypeLabel: Record<ProductType, string> = {
-  earrings: "Boucles d'oreille",
-  bracelet: 'Bracelet',
-};

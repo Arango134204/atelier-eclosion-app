@@ -1,11 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Drawer } from 'expo-router/drawer';
+import { useTranslation } from 'react-i18next';
 
 import { BrandDrawerContent } from '@/components/brand/BrandDrawerContent';
 import { BrandLogo } from '@/components/brand/BrandLogo';
 import { colors, fonts } from '@/theme/colors';
 
 export default function DrawerLayout() {
+  const { t } = useTranslation();
+
   return (
     <Drawer
       drawerContent={(props) => <BrandDrawerContent {...props} />}
@@ -28,23 +31,21 @@ export default function DrawerLayout() {
         options={{
           title: 'Éclosion',
           headerTitle: () => <BrandLogo height={40} />,
-          drawerLabel: 'Inicio',
+          drawerLabel: t('nav.home'),
           drawerIcon: ({ color, size }) => <Ionicons name="home-outline" color={color} size={size} />,
         }}
       />
       <Drawer.Screen
         name="atelier"
         options={{
-          title: 'El taller',
-          drawerLabel: 'El taller',
+          title: t('nav.atelier'),
           drawerIcon: ({ color, size }) => <Ionicons name="location-outline" color={color} size={size} />,
         }}
       />
       <Drawer.Screen
         name="about"
         options={{
-          title: 'La marca',
-          drawerLabel: 'La marca',
+          title: t('nav.about'),
           drawerIcon: ({ color, size }) => <Ionicons name="sparkles-outline" color={color} size={size} />,
         }}
       />

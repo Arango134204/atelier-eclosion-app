@@ -40,6 +40,15 @@ npm run typecheck   # verificación de TypeScript
 powershell -ExecutionPolicy Bypass -File scripts/generate-brand-assets.ps1   # regenerar iconos desde el logo
 ```
 
+## Idiomas
+
+La app está en **francés** (idioma principal de la marca) y **español**. En la primera apertura usa español si el
+teléfono está en español y francés en cualquier otro caso. Se puede cambiar en el menú lateral (☰) → **FR / ES**, y
+la elección se recuerda.
+
+- Textos: `src/i18n/locales/fr.ts` y `src/i18n/locales/es.ts`. TypeScript obliga a que ambos tengan las mismas claves.
+- Para agregar un texto: crear la clave en `fr.ts`, traducirla en `es.ts` y usar `t('seccion.clave')` con `useTranslation()`.
+
 ## Identidad de marca
 
 - Logo oficial: `assets/brand/logo-original.png` (fuente: ateliereclosionbijoux.com).

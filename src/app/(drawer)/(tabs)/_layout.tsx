@@ -1,9 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 import { colors, fonts } from '@/theme/colors';
 
 export default function TabsLayout() {
+  const { t } = useTranslation();
+
   return (
     <Tabs
       screenOptions={{
@@ -18,21 +21,21 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Catálogo',
+          title: t('nav.catalog'),
           tabBarIcon: ({ color, size }) => <Ionicons name="diamond-outline" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
-          title: 'Favoritos',
+          title: t('nav.favorites'),
           tabBarIcon: ({ color, size }) => <Ionicons name="heart-outline" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="requests"
         options={{
-          title: 'Mis solicitudes',
+          title: t('nav.requests'),
           tabBarIcon: ({ color, size }) => <Ionicons name="document-text-outline" color={color} size={size} />,
         }}
       />

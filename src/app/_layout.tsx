@@ -1,4 +1,5 @@
 import '@/global.css';
+import '@/i18n';
 
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -7,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { useLanguageSync } from '@/i18n/useLanguageSync';
 import { colors, fonts } from '@/theme/colors';
 
 SplashScreen.preventAutoHideAsync();
@@ -20,9 +22,10 @@ export default function RootLayout() {
     [fonts.sansLight]: require('@/assets/fonts/Jost-Light.ttf'),
     [fonts.sansMedium]: require('@/assets/fonts/Jost-Medium.ttf'),
   });
+  const languageReady = useLanguageSync();
 
   // Si una fuente falla se continúa con la del sistema en lugar de bloquear la app.
-  const ready = fontsLoaded || fontError !== null;
+  const ready = (fontsLoaded || fontError !== null) && languageReady;
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
