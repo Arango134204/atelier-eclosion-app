@@ -1,0 +1,13 @@
+# Bitácora de avances
+
+| Fecha | Objetivo de clase | Tarea realizada | Responsable | Evidencia / commit | Dificultad encontrada | Observación del docente | Siguiente paso |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-11-01 | Exploración técnica | Prototipo nativo en Kotlin + Jetpack Compose: identidad visual (paleta, tipografías Cormorant Garamond + Jost), splash animado y Home. | _(completar)_ | Proyecto `AtelierEclosionBijoux` (commit `21f8bee`) | Al revisar los requisitos del curso se confirmó que la tecnología obligatoria es React Native + TypeScript + Expo. | — | Migrar a Expo reutilizando la identidad visual y el contenido. |
+| 2026-11-03 | Hito 1 — Definición y base | Cambio de stack a Expo SDK 57 (el mismo de clase). Cliente, problema y alcance; mapa de pantallas; matriz inicial de requisitos; NativeWind con la paleta de la marca; fuentes propias con `useFonts`; Stack + Tabs + Drawer; ruta dinámica `product/[handle]` con manejo de identificador inexistente; componentes `Screen`, `AppButton`, `StateMessage` y `ProductCard`. Se identificó la API pública de Shopify del cliente como fuente HTTP para el hito 3. | _(completar)_ | Commit "Hito 1" del proyecto `atelier-eclosion-app` | Conflicto de versiones de `react-dom` al instalar dependencias (se fijó en 19.2.3). TypeScript 6 no reconocía el import de `global.css` (se declaró el módulo `*.css`). La primera ejecución en el emulador tarda porque descarga Expo Go. | _(completar en clase)_ | Hito 2: Zustand (favoritos), contador de cantidad, cotización y formulario. |
+
+## Decisiones registradas
+
+- **Stack:** React Native + TypeScript + Expo SDK 57, según el documento del curso. El prototipo Kotlin se conserva solo como referencia de diseño y no forma parte de la entrega.
+- **Fuente de datos HTTP:** API pública de la tienda Shopify del cliente (`/products.json`, `/products/{handle}.json`). Tiene datos reales del cliente y no requiere credenciales.
+- **Persistencia compartida:** Firebase Firestore para las solicitudes, porque la artesana debe verlas desde otro dispositivo.
+- **Datos temporales:** hasta el hito 3 el catálogo usa una copia local de las 9 piezas reales (`src/features/catalog/data/catalog.seed.ts`). Está marcada como temporal en el código.
