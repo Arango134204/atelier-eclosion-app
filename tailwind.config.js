@@ -4,7 +4,8 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
-      // Paleta Atelier Éclosion: neutros cálidos para dar protagonismo a las fotos de las joyas.
+      // Paleta Atelier Éclosion: dorado y burdeos tomados del logo oficial;
+      // neutros cálidos para dar protagonismo a las fotos de las joyas.
       colors: {
         ivoire: '#FAF6F0',
         porcelaine: '#FFFDF9',
@@ -14,9 +15,9 @@ module.exports = {
         encre: '#1F1A17',
         taupe: '#6E625A',
         'taupe-clair': '#9A8E84',
-        or: '#A8834A',
-        'or-pale': '#E9D9BC',
-        buganvilla: '#9E3B2E',
+        or: '#BC7C1C',
+        'or-pale': '#EED9B6',
+        bordeaux: '#570A04',
         erreur: '#B3261E',
       },
       fontFamily: {

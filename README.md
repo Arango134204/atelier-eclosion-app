@@ -37,7 +37,14 @@ muestra `npx expo start`. Si la red bloquea la conexión, usar `npx expo start -
 
 ```bash
 npm run typecheck   # verificación de TypeScript
+powershell -ExecutionPolicy Bypass -File scripts/generate-brand-assets.ps1   # regenerar iconos desde el logo
 ```
+
+## Identidad de marca
+
+- Logo oficial: `assets/brand/logo-original.png` (fuente: ateliereclosionbijoux.com).
+- Colores: dorado `#BC7C1C` y burdeos `#570A04` (del logo); marfil `#FAF6F0` y tinta `#1F1A17` como neutros.
+- Tipografías: Cormorant Garamond (títulos) y Jost (texto), en `assets/fonts/`.
 
 ## Estructura
 

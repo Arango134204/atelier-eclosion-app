@@ -10,4 +10,5 @@
 - **Stack:** React Native + TypeScript + Expo SDK 57, según el documento del curso. El prototipo Kotlin se conserva solo como referencia de diseño y no forma parte de la entrega.
 - **Fuente de datos HTTP:** API pública de la tienda Shopify del cliente (`/products.json`, `/products/{handle}.json`). Tiene datos reales del cliente y no requiere credenciales.
 - **Persistencia compartida:** Firebase Firestore para las solicitudes, porque la artesana debe verlas desde otro dispositivo.
+- **Logo y colores oficiales:** el logo se tomó del header de ateliereclosionbijoux.com (`assets/brand/logo-original.png`, 1917×1625 con fondo transparente). La paleta usa sus colores exactos: dorado `#BC7C1C` y burdeos `#570A04`. Los iconos de la app se generan con `scripts/generate-brand-assets.ps1` sin alterar el logo. Pendiente: confirmar con la clienta el uso del logo y si prefiere un icono solo con los soles, que se lee mejor en tamaños pequeños.
 - **Datos temporales:** hasta el hito 3 el catálogo usa una copia local de las 9 piezas reales (`src/features/catalog/data/catalog.seed.ts`). Está marcada como temporal en el código.

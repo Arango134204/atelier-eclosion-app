@@ -1,11 +1,15 @@
 import { ScrollView, Text, View } from 'react-native';
 
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { Screen } from '@/components/ui/Screen';
 
 export default function AboutScreen() {
   return (
     <Screen>
       <ScrollView contentContainerClassName="gap-6 px-6 pb-12 pt-4">
+        <View className="items-center py-4">
+          <BrandLogo height={160} />
+        </View>
         <Text className="font-sans-medium text-xs uppercase tracking-[3px] text-or">Atelier Éclosion Bijoux</Text>
         <Text className="font-serif text-4xl leading-[42px] text-encre">
           Revelar la luz de quien la lleva

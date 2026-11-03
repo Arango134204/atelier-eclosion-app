@@ -6,7 +6,8 @@ export const colors = {
   encre: '#1F1A17',
   taupe: '#6E625A',
   taupeClair: '#9A8E84',
-  or: '#A8834A',
+  or: '#BC7C1C',
+  bordeaux: '#570A04',
 } as const;
 
 export const fonts = {

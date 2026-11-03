@@ -1,11 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Drawer } from 'expo-router/drawer';
 
+import { BrandDrawerContent } from '@/components/brand/BrandDrawerContent';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { colors, fonts } from '@/theme/colors';
 
 export default function DrawerLayout() {
   return (
     <Drawer
+      drawerContent={(props) => <BrandDrawerContent {...props} />}
       screenOptions={{
         headerTintColor: colors.encre,
         headerStyle: { backgroundColor: colors.ivoire },
@@ -24,6 +27,7 @@ export default function DrawerLayout() {
         name="(tabs)"
         options={{
           title: 'Éclosion',
+          headerTitle: () => <BrandLogo height={40} />,
           drawerLabel: 'Inicio',
           drawerIcon: ({ color, size }) => <Ionicons name="home-outline" color={color} size={size} />,
         }}
