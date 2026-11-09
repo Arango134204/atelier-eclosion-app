@@ -6,6 +6,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useLanguageSync } from '@/i18n/useLanguageSync';
@@ -23,6 +24,7 @@ export default function RootLayout() {
     [fonts.sansMedium]: require('@/assets/fonts/Jost-Medium.ttf'),
   });
   const languageReady = useLanguageSync();
+  const { t } = useTranslation();
 
   // Si una fuente falla se continúa con la del sistema en lugar de bloquear la app.
   const ready = (fontsLoaded || fontError !== null) && languageReady;
@@ -47,6 +49,12 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
         <Stack.Screen name="product/[handle]" options={{ title: '' }} />
+        <Stack.Screen name="request/quote" options={{ title: t('nav.quote') }} />
+        <Stack.Screen name="request/contact" options={{ title: t('nav.contact') }} />
+        <Stack.Screen
+          name="request/confirmation"
+          options={{ title: t('nav.confirmation'), headerBackVisible: false, gestureEnabled: false }}
+        />
       </Stack>
     </GestureHandlerRootView>
   );

@@ -39,7 +39,8 @@ Pieza seleccionada, variante, cantidad, opción de personalización, país de en
 
 - La cantidad va de 1 a 5 por pieza. Si la variante reporta menos stock, el máximo es ese stock.
 - Recargo sur mesure: +15 % sobre el subtotal si se piden colores o largo distintos.
-- Envío: Francia 5 €, Unión Europea 9 €, internacional 15 €. Gratis desde 120 € de subtotal.
+- Largo sur mesure: aretes de 3 a 12 cm, pulseras de 14 a 22 cm; acepta decimales con coma ("7,5").
+- Envío: Francia 5 €, Unión Europea 9 €, internacional 15 €. Gratis desde 120 € (subtotal + recargo).
 - Total = subtotal + recargo + envío. No se permiten cantidades negativas, vacías ni no numéricas.
 - Email con formato válido y teléfono con al menos 8 dígitos. Las notas son obligatorias si es sur mesure.
 
