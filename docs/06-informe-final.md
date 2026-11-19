@@ -317,11 +317,12 @@ Centralizadas en `src/features/quote/quote.rules.ts` (provisionales, pendientes 
 | Campo | Registro |
 | --- | --- |
 | Fecha | 2026-11-19 |
-| Usuario | Representativo (equipo) — Juan José Arango Jaramillo |
-| Tarea | Solicitar Peonia × 2 sur mesure 7,5 cm envío UE |
-| Resultado | Cotización 112,50 €; solicitud ÉC-0001 guardada |
-| Dificultad | Coordenadas exactas del taller pendientes de la clienta |
-| Ajuste | Mensajes honestos sent/saved; mapa con leyenda atelier/tú |
+| Usuario | Representativo del equipo — Juan José Arango Jaramillo (aún no se documentó una sesión con Mariana; el contenido de marca sí proviene de su sitio) |
+| Tarea | Solicitar Peonia × 2 sur mesure 7,5 cm envío UE; revisar catálogo HTTP, mapa y persistencia tras cerrar la app |
+| Resultado | Cotización 112,50 €; solicitud ÉC-0001 guardada en el teléfono; flujo Stack completo operable |
+| Dificultad | Coordenadas exactas del taller pendientes; la API Shopify puede responder 429 si se satura |
+| Ajuste 1 | Mensajes honestos `saved`/`sent`; leyenda atelier/tú en el mapa; rechequeo de permiso GPS al volver de Ajustes |
+| Ajuste 2 | Pantalla **La maison** reescrita con la historia real de Mariana (texto de ateliereclosionbijoux.com), FR/ES |
 
 ---
 

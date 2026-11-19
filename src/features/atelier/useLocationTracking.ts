@@ -1,5 +1,6 @@
 import * as Location from 'expo-location';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, type AppStateStatus } from 'react-native';
 
 export type LocationPermission = 'undetermined' | 'granted' | 'denied';
 
@@ -13,7 +14,7 @@ export interface DeviceCoords {
  *
  * - Entradas: ninguna; el consumidor decide cuándo activar/pausar/reanudar.
  * - Estado: permiso, coordenadas actuales, si el seguimiento está activo y el último error.
- * - Efectos: solicita permiso, suscribe a `watchPositionAsync` y libera la suscripción al desmontar o pausar.
+ * - Efectos: solicita permiso, suscribe a `watchPositionAsync`, relee el permiso al volver de Ajustes (AppState) y libera la suscripción al desmontar o pausar.
  * - Resultado: coordenadas del dispositivo (distintas del marcador fijo del taller) y controles de seguimiento.
  */
 export function useLocationTracking() {
@@ -22,6 +23,7 @@ export function useLocationTracking() {
   const [tracking, setTracking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const subscription = useRef<Location.LocationSubscription | null>(null);
+  const appState = useRef<AppStateStatus>((AppState.currentState ?? 'active') as AppStateStatus);
 
   const stopWatching = useCallback(async () => {
     if (subscription.current) {
@@ -95,6 +97,36 @@ export function useLocationTracking() {
   const resumeTracking = useCallback(async () => {
     await startTracking();
   }, [startTracking]);
+
+  const refreshPermission = useCallback(async () => {
+    const current = await Location.getForegroundPermissionsAsync();
+    if (current.granted) {
+      setPermission('granted');
+      setError((prev) => (prev === 'permission' ? null : prev));
+      return;
+    }
+    if (current.canAskAgain === false) {
+      setPermission('denied');
+      setError('permission');
+      return;
+    }
+    setPermission(current.status === 'undetermined' ? 'undetermined' : 'denied');
+  }, []);
+
+  useEffect(() => {
+    void refreshPermission();
+  }, [refreshPermission]);
+
+  useEffect(() => {
+    const onChange = (next: AppStateStatus) => {
+      if (appState.current.match(/inactive|background/) && next === 'active') {
+        void refreshPermission();
+      }
+      appState.current = next;
+    };
+    const sub = AppState.addEventListener('change', onChange);
+    return () => sub.remove();
+  }, [refreshPermission]);
 
   useEffect(() => {
     return () => {
