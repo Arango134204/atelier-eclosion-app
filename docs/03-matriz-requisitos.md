@@ -6,7 +6,7 @@ Autor: Juan José Arango Jaramillo
 
 | # | Requisito del documento | Función en la app | Pantalla / archivo | Estado | Evidencia |
 | --- | --- | --- | --- | --- | --- |
-| 1 | React Native + TypeScript + Expo (versiones de clase) | Base del proyecto, Expo SDK 57 | `package.json`, `package-lock.json` | ✅ | Hito 1 |
+| 1 | React Native + TypeScript + Expo (versiones de clase) | Base del proyecto, Expo SDK 58 | `package.json`, `package-lock.json` | ✅ | Hito 1 |
 | 2 | Expo Router y separación por carpetas | Rutas en `src/app`, componentes, features, utils, theme | `src/` | ✅ | Hito 1 |
 | 3 | Tipos para entidades, props y respuestas | `Product`, `ShopifyProduct`, props tipadas | `src/features/catalog/types/`, `api/shopify.types.ts` | ✅ | Hito 3 |
 | 4 | Stack con función real | Detalle → Cotización → Coordenadas → Confirmación | `src/app/_layout.tsx`, `src/app/request/` | ✅ | Hito 2 |

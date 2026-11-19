@@ -3,7 +3,7 @@
 **Asignatura:** Desarrollo Móvil II (UAM)  
 **Autor:** Juan José Arango Jaramillo  
 **Cliente:** Atelier Éclosion Bijoux (Mulhouse, Francia)  
-**Stack:** React Native · TypeScript · Expo SDK 57  
+**Stack:** React Native · TypeScript · Expo SDK 58  
 **Repositorio:** https://github.com/Arango134204/atelier-eclosion-app
 
 ---
@@ -308,7 +308,7 @@ Centralizadas en `src/features/quote/quote.rules.ts` (provisionales, pendientes 
 ## 8. Pruebas y evidencias
 
 - Hito 1–2: `docs/evidencias/2026-11-03-*` y `2026-11-09-hito2-*`
-- Flujo verificado en emulador Android (Expo Go SDK 57)
+- Flujo verificado en emulador Android (Expo Go SDK 58)
 - Persistencia local tras `force-stop`
 - Typecheck: `npm run typecheck`
 
