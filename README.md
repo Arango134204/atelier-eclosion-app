@@ -30,9 +30,9 @@ npx expo start --android
 5. Ver la solicitud en **Mes demandes**.
 6. En el menú ☰ → **L'atelier**: mapa, centrar y seguimiento GPS.
 
-### Firebase (opcional pero recomendado)
+### Persistencia
 
-Sin `.env` de Firebase la app funciona con persistencia local. Para que la artesana reciba solicitudes en la nube: `docs/firebase-setup.md`.
+Las solicitudes y favoritos se guardan en el **teléfono** (AsyncStorage) y siguen disponibles al cerrar y reabrir la app. Cumple el enunciado del curso. **No se promete** envío a otro dispositivo. Firestore es solo una mejora opcional documentada en `docs/firebase-setup.md`.
 
 ## Comandos útiles
 
@@ -66,7 +66,7 @@ Francés (marca) + español. Selector en el Drawer. Textos en `src/i18n/locales/
 | `docs/05-especificacion-mockups.md` | Spec Figma |
 | `docs/06-informe-final.md` | Informe + diagramas Mermaid |
 | `docs/Informe_Final_Eclosion_Bijoux.docx` | Informe Word (estilo Makumba) |
-| `docs/firebase-setup.md` | Cómo crear el proyecto Firebase |
+| `docs/firebase-setup.md` | Mejora opcional (Firestore), no exigida |
 | `docs/evidencias/` | Capturas de prueba |
 
 ## Estructura
@@ -81,13 +81,12 @@ src/
 │   ├── request/         Validación de contacto
 │   └── atelier/         Mapa + GPS
 ├── store/               Zustand
-├── services/            HTTP + Firebase
+├── services/            HTTP (+ Firebase opcional)
 └── i18n/                FR / ES
 ```
 
 ## Límites conocidos
 
 - Coordenadas del taller = centro de Mulhouse hasta confirmar dirección con la clienta.
-- Firestore requiere variables en `.env` (ver plantilla).
-- Reglas Firestore abiertas solo para entrega académica.
+- Las solicitudes no se sincronizan entre dispositivos (persistencia local deliberada).
 - Fuera de alcance: pagos y autenticación.

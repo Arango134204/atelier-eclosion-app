@@ -12,7 +12,7 @@
 
 ### 1.1 Propósito del sistema
 
-Aplicación móvil que permite a las clientas explorar el catálogo artesanal real de Atelier Éclosion Bijoux, cotizar piezas (incluidas personalizaciones *sur mesure*) y registrar solicitudes que la artesana pueda consultar.
+Aplicación móvil que permite a las clientas explorar el catálogo artesanal real de Atelier Éclosion Bijoux, cotizar piezas (incluidas personalizaciones *sur mesure*) y registrar solicitudes en el dispositivo para consultarlas después.
 
 ### 1.2 Definición del problema
 
@@ -24,7 +24,7 @@ App Expo con:
 
 1. Catálogo HTTP desde la API pública Shopify del cliente.
 2. Cotización con reglas explícitas (cantidad, sur mesure, envío).
-3. Formulario validado y persistencia local + Firestore (cuando está configurado).
+3. Formulario validado y persistencia local (AsyncStorage): las solicitudes se conservan al cerrar y reabrir la app.
 4. Mapa del taller (OpenStreetMap + Leaflet) con ubicación del dispositivo.
 
 ### 1.4 Stakeholders
@@ -32,7 +32,7 @@ App Expo con:
 | Actor | Rol | Prioridad |
 | --- | --- | --- |
 | Clienta | Explora, cotiza y solicita piezas | Alta |
-| Artesana | Recibe/consulta solicitudes (Firestore) | Alta |
+| Artesana | Dueña del negocio; fuera de la app en esta entrega (sin sincronización entre dispositivos) | Media |
 | Equipo académico | Evalúa cobertura de temas del curso | Media |
 
 ### 1.5 Justificación
@@ -53,7 +53,7 @@ Digitaliza el proceso de solicitud sin sustituir el oficio artesanal: da transpa
 | RF04 | Contador 1–5 y total en vivo | Cumplido |
 | RF05 | Cotización sur mesure + envío | Cumplido |
 | RF06 | Formulario de contacto validado | Cumplido |
-| RF07 | Persistencia de solicitudes | Cumplido (local + Firestore opcional) |
+| RF07 | Persistencia de solicitudes | Cumplido (AsyncStorage en el teléfono) |
 | RF08 | Mapa del taller + GPS | Cumplido |
 | RF09 | i18n FR/ES | Cumplido |
 
@@ -328,13 +328,13 @@ Centralizadas en `src/features/quote/quote.rules.ts` (provisionales, pendientes 
 ## 9. Límites conocidos
 
 1. Coordenadas del taller = centro de Mulhouse hasta confirmar dirección.
-2. Firestore requiere `.env` (ver `docs/firebase-setup.md`); sin él la app funciona en modo local.
-3. Reglas Firestore abiertas solo para entrega académica.
-4. Catálogo depende de la API pública Shopify (puede rate-limitar).
-5. No hay pagos ni autenticación (fuera de alcance).
+2. Las solicitudes no se sincronizan entre dispositivos (persistencia local deliberada; el enunciado no exige nube si no se promete intercambio).
+3. Catálogo depende de la API pública Shopify (puede rate-limitar).
+4. No hay pagos ni autenticación (fuera de alcance).
+5. Firestore queda documentado como mejora opcional, no como requisito de entrega.
 
 ---
 
 ## 10. Conclusión
 
-El proceso principal queda cerrado de punta a punta con los temas obligatorios del curso (navegación, estado, HTTP, mapa, persistencia y documentación). El siguiente valor de producto sería confirmar reglas con la clienta y endurecer seguridad de Firestore.
+El proceso principal queda cerrado de punta a punta con los temas obligatorios del curso (navegación, estado, HTTP, mapa, persistencia local y documentación).

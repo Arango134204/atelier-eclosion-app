@@ -15,7 +15,7 @@ perla a perla, con inspiración colombiana y se produce en pequeñas series. Ven
 | --- | --- |
 | Los encargos personalizados (colores, largo, cantidades) se negocian por Instagram/WhatsApp, con mensajes dispersos. | La clienta arma su solicitud dentro de la app con la pieza, la variante, la cantidad y sus notas. |
 | La clienta no sabe cuánto costará una personalización hasta que la artesana responde. | La app calcula una cotización estimada con reglas explícitas. |
-| La artesana pierde el rastro de qué pidió quién y en qué estado está. | Las solicitudes quedan guardadas (Firestore) y se pueden consultar con su estado. |
+| La artesana pierde el rastro de qué pidió quién y en qué estado está. | Las solicitudes quedan guardadas en el teléfono de la clienta, con número y estado, y se pueden volver a consultar. |
 | Para saber dónde ver o recoger las piezas hay que preguntar. | Mapa del taller con la ubicación de la clienta. |
 
 **Beneficio esperado:** menos ida y vuelta de mensajes, precios claros antes de pedir y un registro único de solicitudes.
@@ -29,7 +29,7 @@ perla a perla, con inspiración colombiana y se produce en pequeñas series. Ven
 3. Elegir variante (color) y **cantidad** (contador con límites 1–5).
 4. Ver la **cotización**: precio × cantidad + recargo de personalización + envío según destino.
 5. Llenar el **formulario** de solicitud (nombre, email, teléfono, notas) con validaciones.
-6. Enviar: la solicitud se guarda en **Firestore** y aparece en "Mis solicitudes" con su estado.
+6. Guardar: la solicitud se conserva en el **teléfono** (AsyncStorage) y aparece en "Mis solicitudes" con su estado.
 
 ### Datos que entran
 
@@ -65,7 +65,7 @@ API pública de la tienda Shopify del cliente (sin credenciales):
 | Productos de una colección | `GET https://ateliereclosionbijoux.com/collections/{handle}/products.json` |
 | Colecciones | `GET https://ateliereclosionbijoux.com/collections.json` |
 
-Persistencia compartida de solicitudes: **Firebase Firestore**, para que la artesana vea lo que envían las clientas.
+Persistencia de solicitudes: **AsyncStorage** en el dispositivo (se consultan tras cerrar y reabrir la app). No se promete sincronización entre dispositivos; una nube (p. ej. Firestore) quedaría como mejora futura.
 
 ## Fuera de alcance
 

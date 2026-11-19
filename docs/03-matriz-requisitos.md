@@ -29,7 +29,7 @@ Autor: Juan José Arango Jaramillo
 | 21 | TanStack Query | `useProducts`, `useProduct` | `features/catalog/hooks/` | ✅ | Hito 3 |
 | 22 | Mapa OSM + Leaflet en WebView | Taller Mulhouse | `atelier.tsx` | ✅ | Hito 3 |
 | 23 | Permisos, centrar, seguimiento, limpieza | `useLocationTracking` | El taller | ✅ | Hito 3 |
-| 24 | Persistencia tras cerrar la app | AsyncStorage + Firestore opcional | Mis solicitudes | ✅ | Hito 2 / 4 |
+| 24 | Persistencia tras cerrar la app | AsyncStorage (favoritos y solicitudes en el teléfono; se consultan tras cerrar/reabrir). Sin promesa de nube | Mis solicitudes, Favoritos | ✅ | Hito 2 / 4 |
 | 25 | Sin conexión / sin confirmaciones falsas | NetInfo + mensajes sent/saved | `OfflineBanner`, confirmación | ✅ | Hito 4 |
 | 26 | `.env.template`, README, informe, bitácora, prueba | Documentación completa | `README.md`, `docs/` | ✅ | Hito 4 |
 | — | Extra: FR/ES | i18next + selector | `src/i18n/` | ✅ | Hito 1 |

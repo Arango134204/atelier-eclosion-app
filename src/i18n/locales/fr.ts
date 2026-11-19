@@ -104,8 +104,8 @@ export const fr = {
   confirmation: {
     title: 'Merci, {{name}}',
     body: 'Votre demande n° {{number}} est enregistrée.',
-    localNote: "Elle est conservée sur cet appareil. Sans connexion ou sans Firebase configuré, l'atelier ne la reçoit pas encore.",
-    sentNote: "Elle a été envoyée à l'atelier et reste aussi disponible sur cet appareil.",
+    localNote: "Elle est conservée sur cet appareil et restera disponible après avoir fermé l'application.",
+    sentNote: "Elle a également été synchronisée (si un service cloud est configuré).",
     viewRequests: 'Voir mes demandes',
     keepBrowsing: 'Continuer mes découvertes',
     notFound: 'Demande introuvable.',

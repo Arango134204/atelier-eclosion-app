@@ -105,8 +105,8 @@ export const es: Translation = {
   confirmation: {
     title: 'Gracias, {{name}}',
     body: 'Tu solicitud n.º {{number}} quedó guardada.',
-    localNote: 'Se conserva en este teléfono. Sin conexión o sin Firebase configurado, el taller aún no la recibe.',
-    sentNote: 'Fue enviada al taller y también queda disponible en este teléfono.',
+    localNote: 'Se conserva en este teléfono y seguirá disponible después de cerrar la aplicación.',
+    sentNote: 'También se sincronizó (si hay un servicio en la nube configurado).',
     viewRequests: 'Ver mis solicitudes',
     keepBrowsing: 'Seguir descubriendo',
     notFound: 'Solicitud no encontrada.',
