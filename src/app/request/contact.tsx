@@ -1,14 +1,14 @@
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 
 import { AppButton } from '@/components/ui/AppButton';
 import { BottomActionBar } from '@/components/ui/BottomActionBar';
 import { PriceRow } from '@/components/ui/PriceRow';
 import { Screen } from '@/components/ui/Screen';
 import { StateMessage } from '@/components/ui/StateMessage';
-import { TextField } from '@/components/ui/TextField';
+import { TextField, type TextFieldRef } from '@/components/ui/TextField';
 import { parseDecimal } from '@/features/quote/calculateQuote';
 import { useQuote } from '@/features/quote/useQuote';
 import type { ContactDetails } from '@/features/request/types';
@@ -33,9 +33,9 @@ export default function ContactScreen() {
   const [contact, setContact] = useState<ContactDetails>(EMPTY_CONTACT);
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
-  const emailRef = useRef<TextInput>(null);
-  const phoneRef = useRef<TextInput>(null);
-  const messageRef = useRef<TextInput>(null);
+  const emailRef = useRef<TextFieldRef>(null);
+  const phoneRef = useRef<TextFieldRef>(null);
+  const messageRef = useRef<TextFieldRef>(null);
 
   if (!product || !breakdown || !isValid) {
     return (

@@ -32,21 +32,21 @@ export default function DrawerLayout() {
           title: 'Éclosion',
           headerTitle: () => <BrandLogo height={40} />,
           drawerLabel: t('nav.home'),
-          drawerIcon: ({ color, size }) => <Ionicons name="home-outline" color={color} size={size} />,
+          drawerIcon: ({ color, size }) => <Ionicons name="home-outline" color={String(color)} size={size} />,
         }}
       />
       <Drawer.Screen
         name="atelier"
         options={{
           title: t('nav.atelier'),
-          drawerIcon: ({ color, size }) => <Ionicons name="location-outline" color={color} size={size} />,
+          drawerIcon: ({ color, size }) => <Ionicons name="location-outline" color={String(color)} size={size} />,
         }}
       />
       <Drawer.Screen
         name="about"
         options={{
           title: t('nav.about'),
-          drawerIcon: ({ color, size }) => <Ionicons name="sparkles-outline" color={color} size={size} />,
+          drawerIcon: ({ color, size }) => <Ionicons name="sparkles-outline" color={String(color)} size={size} />,
         }}
       />
     </Drawer>

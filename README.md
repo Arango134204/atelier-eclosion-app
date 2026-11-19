@@ -4,13 +4,13 @@ Aplicación para **Atelier Éclosion Bijoux**, joyería artesanal tejida a mano 
 
 **Proyecto final — Desarrollo Móvil II (UAM)**  
 **Autor:** Juan José Arango Jaramillo  
-**Stack:** React Native · TypeScript · Expo SDK 57  
+**Stack:** React Native · TypeScript · Expo SDK 58  
 **Repositorio:** https://github.com/Arango134204/atelier-eclosion-app
 
 ## Requisitos
 
 - Node.js 20 o superior
-- Android: **Expo Go** (SDK 57) o emulador de Android Studio
+- Android: **Expo Go** (SDK 58) o emulador de Android Studio
 
 ## Instalación y ejecución
 

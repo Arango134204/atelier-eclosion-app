@@ -1,13 +1,15 @@
-import { useState, type Ref } from 'react';
+import { useState, type ComponentRef, type Ref } from 'react';
 import { Text, TextInput, View, type TextInputProps } from 'react-native';
 
 import { colors, fonts } from '@/theme/colors';
 
-interface TextFieldProps extends Omit<TextInputProps, 'style' | 'placeholderTextColor'> {
+export type TextFieldRef = ComponentRef<typeof TextInput>;
+
+interface TextFieldProps extends Omit<TextInputProps, 'style' | 'placeholderTextColor' | 'ref'> {
   label: string;
   error?: string;
   hint?: string;
-  ref?: Ref<TextInput>;
+  ref?: Ref<TextFieldRef>;
 }
 
 /** Campo subrayado: la línea se oscurece al enfocar y se vuelve roja con un mensaje si hay error. */

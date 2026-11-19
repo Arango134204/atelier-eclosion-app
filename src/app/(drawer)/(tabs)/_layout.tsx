@@ -22,21 +22,23 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: t('nav.catalog'),
-          tabBarIcon: ({ color, size }) => <Ionicons name="diamond-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="diamond-outline" color={String(color)} size={size} />,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
           title: t('nav.favorites'),
-          tabBarIcon: ({ color, size }) => <Ionicons name="heart-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="heart-outline" color={String(color)} size={size} />,
         }}
       />
       <Tabs.Screen
         name="requests"
         options={{
           title: t('nav.requests'),
-          tabBarIcon: ({ color, size }) => <Ionicons name="document-text-outline" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="document-text-outline" color={String(color)} size={size} />
+          ),
         }}
       />
     </Tabs>
