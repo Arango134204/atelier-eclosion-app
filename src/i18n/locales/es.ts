@@ -74,6 +74,7 @@ export const es: Translation = {
     freeReached: 'Envío gratis',
     estimateNote: 'Estimación: el taller confirma el precio final antes de fabricar.',
     continue: 'Continuar',
+    reset: 'Restablecer Cotización',
     errors: {
       quantityOutOfRange: 'La cantidad debe estar entre {{min}} y {{max}}.',
       unitPriceInvalid: 'El precio de esta pieza no está disponible.',
@@ -121,6 +122,9 @@ export const es: Translation = {
   requests: {
     emptyTitle: 'Sin solicitudes todavía',
     emptyBody: 'Aquí verás tus pedidos y solicitudes sur mesure con su estado.',
+    onlyCustom: 'Solo personalizadas',
+    emptyCustomTitle: 'Sin solicitudes personalizadas',
+    emptyCustomBody: 'No tienes solicitudes personalizadas.',
     surMesureTag: 'Sur mesure',
     status_saved: 'Guardada',
     status_sent: 'Enviada',

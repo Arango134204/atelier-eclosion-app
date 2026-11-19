@@ -2,10 +2,6 @@ import { create } from 'zustand';
 
 import { QUANTITY_MAX, QUANTITY_MIN, type ShippingZone } from '@/features/quote/quote.rules';
 
-/**
- * Solicitud en construcción, compartida por Détail → Devis → Coordonnées.
- * No se persiste: si la app se cierra a mitad del flujo, la clienta vuelve a empezar desde el detalle.
- */
 interface RequestDraftState {
   productHandle: string | null;
   quantity: number;
@@ -17,6 +13,7 @@ interface RequestDraftState {
   setSurMesure: (surMesure: boolean) => void;
   setCustomLength: (customLength: string) => void;
   setShippingZone: (zone: ShippingZone) => void;
+  resetQuote: () => void;
   reset: () => void;
 }
 
@@ -37,5 +34,12 @@ export const useRequestDraftStore = create<RequestDraftState>()((set) => ({
   setSurMesure: (surMesure) => set({ surMesure }),
   setCustomLength: (customLength) => set({ customLength }),
   setShippingZone: (shippingZone) => set({ shippingZone }),
+  resetQuote: () =>
+    set({
+      quantity: 1,
+      surMesure: false,
+      customLength: '',
+      shippingZone: 'france',
+    }),
   reset: () => set(initialState),
 }));

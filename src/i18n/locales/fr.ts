@@ -73,6 +73,7 @@ export const fr = {
     freeReached: 'Livraison offerte',
     estimateNote: "Estimation : l'atelier confirme le prix final avant toute fabrication.",
     continue: 'Continuer',
+    reset: 'Réinitialiser le devis',
     errors: {
       quantityOutOfRange: 'La quantité doit être entre {{min}} et {{max}}.',
       unitPriceInvalid: "Le prix de cette pièce n'est pas disponible.",
@@ -120,6 +121,9 @@ export const fr = {
   requests: {
     emptyTitle: 'Aucune demande pour le moment',
     emptyBody: 'Retrouvez ici vos commandes et demandes sur mesure, avec leur statut.',
+    onlyCustom: 'Personnalisées seulement',
+    emptyCustomTitle: 'Aucune demande personnalisée',
+    emptyCustomBody: 'Vous n’avez pas de demandes sur mesure.',
     surMesureTag: 'Sur mesure',
     status_saved: 'Enregistrée',
     status_sent: 'Envoyée',

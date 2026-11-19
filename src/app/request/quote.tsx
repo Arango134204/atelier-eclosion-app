@@ -44,6 +44,12 @@ export default function QuoteScreen() {
   const [lengthTouched, setLengthTouched] = useState(false);
   const [attemptedContinue, setAttemptedContinue] = useState(false);
 
+  const handleResetQuote = () => {
+    draft.resetQuote();
+    setLengthTouched(false);
+    setAttemptedContinue(false);
+  };
+
   if (!product || !breakdown) {
     return (
       <Screen>
@@ -167,6 +173,8 @@ export default function QuoteScreen() {
           </View>
 
           <Text className="font-sans-light text-xs leading-5 text-taupe">{t('quote.estimateNote')}</Text>
+
+          <AppButton label={t('quote.reset')} onPress={handleResetQuote} variant="secondary" />
         </ScrollView>
 
         <BottomActionBar>
