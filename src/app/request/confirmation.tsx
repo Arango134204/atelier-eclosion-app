@@ -13,9 +13,10 @@ import { colors } from '@/theme/colors';
 
 export default function ConfirmationScreen() {
   const { t } = useTranslation();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, outcome } = useLocalSearchParams<{ id: string; outcome?: string }>();
   const request = useRequestsStore((state) => state.requests.find((item) => item.id === id));
   const resetDraft = useRequestDraftStore((state) => state.reset);
+  const sent = outcome === 'sent' || request?.status === 'sent';
 
   const leaveTo = (path: '/requests' | '/') => {
     resetDraft();
@@ -51,7 +52,9 @@ export default function ConfirmationScreen() {
           <Text className="text-center font-sans text-base text-encre">
             {t('confirmation.body', { number: request.number })}
           </Text>
-          <Text className="text-center font-sans-light text-sm leading-5 text-taupe">{t('confirmation.localNote')}</Text>
+          <Text className="text-center font-sans-light text-sm leading-5 text-taupe">
+            {t(sent ? 'confirmation.sentNote' : 'confirmation.localNote')}
+          </Text>
         </Animated.View>
       </View>
       <Animated.View entering={FadeInDown.delay(320).duration(420)} className="gap-3 px-6 pb-6">

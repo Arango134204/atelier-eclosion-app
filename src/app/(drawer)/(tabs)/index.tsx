@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
 import { ProductGrid } from '@/components/catalog/ProductGrid';
 import { Chip } from '@/components/ui/Chip';
 import { Screen } from '@/components/ui/Screen';
 import { SearchField } from '@/components/ui/SearchField';
 import { StateMessage } from '@/components/ui/StateMessage';
-import { catalogSeed } from '@/features/catalog/data/catalog.seed';
+import { useProducts } from '@/features/catalog/hooks/useProducts';
 import { useCatalogFilter, type CatalogFilter } from '@/features/catalog/useCatalogFilter';
+import { colors } from '@/theme/colors';
 
 interface CatalogHeaderProps {
   query: string;
@@ -55,7 +56,30 @@ function CatalogHeader({ query, onQueryChange, filter, onFilterChange, resultCou
 
 export default function CatalogScreen() {
   const { t } = useTranslation();
-  const { query, setQuery, filter, setFilter, visible, reset } = useCatalogFilter(catalogSeed);
+  const { data = [], isPending, isError, refetch, isRefetching } = useProducts();
+  const { query, setQuery, filter, setFilter, visible, reset } = useCatalogFilter(data);
+
+  if (isPending) {
+    return (
+      <Screen className="items-center justify-center gap-3">
+        <ActivityIndicator color={colors.or} />
+        <Text className="font-sans-light text-sm text-taupe">{t('catalog.loading')}</Text>
+      </Screen>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Screen>
+        <StateMessage
+          icon="cloud-offline-outline"
+          title={t('catalog.errorTitle')}
+          description={t('catalog.errorBody')}
+          action={{ label: t('catalog.retry'), onPress: () => refetch() }}
+        />
+      </Screen>
+    );
+  }
 
   return (
     <Screen>
@@ -76,7 +100,7 @@ export default function CatalogScreen() {
               icon="search-outline"
               title={t('catalog.noResultsTitle')}
               description={t('catalog.noResultsBody')}
-              action={{ label: t('catalog.resetFilters'), onPress: reset }}
+              action={{ label: isRefetching ? t('catalog.loading') : t('catalog.resetFilters'), onPress: reset }}
             />
           </View>
         }

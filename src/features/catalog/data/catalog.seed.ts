@@ -1,8 +1,9 @@
 import type { Product } from '../types/product';
 
 /**
- * TEMPORAL (hito 1): copia de las 9 piezas reales publicadas en ateliereclosionbijoux.com.
- * En el hito 3 se reemplaza por la consulta HTTP a /products.json con Axios + TanStack Query.
+ * Respaldo local de las piezas publicadas en ateliereclosionbijoux.com.
+ * El catálogo en pantalla usa Shopify vía Axios + TanStack Query; esta semilla solo
+ * resuelve favoritos/borradores si la caché remota aún no tiene el handle.
  */
 const CDN = 'https://cdn.shopify.com/s/files/1/1050/4195/3032/files';
 

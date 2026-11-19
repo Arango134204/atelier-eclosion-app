@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useLanguageSync } from '@/i18n/useLanguageSync';
+import { QueryProvider } from '@/providers/QueryProvider';
 import { colors, fonts } from '@/theme/colors';
 
 SplashScreen.preventAutoHideAsync();
@@ -36,26 +37,28 @@ export default function RootLayout() {
   if (!ready) return null;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="dark" />
-      <Stack
-        screenOptions={{
-          headerTintColor: colors.encre,
-          headerStyle: { backgroundColor: colors.ivoire },
-          headerTitleStyle: { fontFamily: fonts.serifMedium, fontSize: 22 },
-          headerShadowVisible: false,
-          contentStyle: { backgroundColor: colors.ivoire },
-        }}
-      >
-        <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-        <Stack.Screen name="product/[handle]" options={{ title: '' }} />
-        <Stack.Screen name="request/quote" options={{ title: t('nav.quote') }} />
-        <Stack.Screen name="request/contact" options={{ title: t('nav.contact') }} />
-        <Stack.Screen
-          name="request/confirmation"
-          options={{ title: t('nav.confirmation'), headerBackVisible: false, gestureEnabled: false }}
-        />
-      </Stack>
-    </GestureHandlerRootView>
+    <QueryProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StatusBar style="dark" />
+        <Stack
+          screenOptions={{
+            headerTintColor: colors.encre,
+            headerStyle: { backgroundColor: colors.ivoire },
+            headerTitleStyle: { fontFamily: fonts.serifMedium, fontSize: 22 },
+            headerShadowVisible: false,
+            contentStyle: { backgroundColor: colors.ivoire },
+          }}
+        >
+          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+          <Stack.Screen name="product/[handle]" options={{ title: '' }} />
+          <Stack.Screen name="request/quote" options={{ title: t('nav.quote') }} />
+          <Stack.Screen name="request/contact" options={{ title: t('nav.contact') }} />
+          <Stack.Screen
+            name="request/confirmation"
+            options={{ title: t('nav.confirmation'), headerBackVisible: false, gestureEnabled: false }}
+          />
+        </Stack>
+      </GestureHandlerRootView>
+    </QueryProvider>
   );
 }

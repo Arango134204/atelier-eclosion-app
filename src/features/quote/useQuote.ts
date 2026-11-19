@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
-import { findProductByHandle } from '@/features/catalog/data/catalog.seed';
+import { useProducts } from '@/features/catalog/hooks/useProducts';
+import { resolveProduct } from '@/features/catalog/resolveProduct';
 import type { Product } from '@/features/catalog/types/product';
 import { useRequestDraftStore } from '@/store/requestDraft.store';
 
@@ -29,7 +30,8 @@ export function useQuote(): UseQuoteResult {
   const surMesure = useRequestDraftStore((state) => state.surMesure);
   const customLength = useRequestDraftStore((state) => state.customLength);
   const shippingZone = useRequestDraftStore((state) => state.shippingZone);
-  const product = productHandle ? findProductByHandle(productHandle) : undefined;
+  const { data: products } = useProducts();
+  const product = productHandle ? resolveProduct(productHandle, products) : undefined;
 
   const { breakdown, errors } = useMemo(() => {
     if (!product) return { breakdown: null, errors: [] };

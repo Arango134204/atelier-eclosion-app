@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { FavoriteButton } from '@/components/catalog/FavoriteButton';
@@ -11,10 +11,11 @@ import { BottomActionBar } from '@/components/ui/BottomActionBar';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import { Screen } from '@/components/ui/Screen';
 import { StateMessage } from '@/components/ui/StateMessage';
-import { findProductByHandle } from '@/features/catalog/data/catalog.seed';
+import { useProduct } from '@/features/catalog/hooks/useProduct';
 import { QUANTITY_MAX, QUANTITY_MIN } from '@/features/quote/quote.rules';
 import { useAppLanguage } from '@/i18n/useAppLanguage';
 import { useRequestDraftStore } from '@/store/requestDraft.store';
+import { colors } from '@/theme/colors';
 import { formatPrice } from '@/utils/formatPrice';
 import { shopifyImage } from '@/utils/shopifyImage';
 
@@ -22,19 +23,33 @@ export default function ProductDetailScreen() {
   const { t } = useTranslation();
   const language = useAppLanguage();
   const { handle } = useLocalSearchParams<{ handle: string }>();
-  const product = handle ? findProductByHandle(handle) : undefined;
+  const { data: product, isPending, isError, refetch, error } = useProduct(handle);
   const [quantity, setQuantity] = useState(QUANTITY_MIN);
   const startDraft = useRequestDraftStore((state) => state.start);
+  const notFound = (error as { response?: { status?: number } } | undefined)?.response?.status === 404;
 
-  if (!product) {
+  if (isPending) {
+    return (
+      <Screen className="items-center justify-center gap-3">
+        <Stack.Screen options={{ title: '' }} />
+        <ActivityIndicator color={colors.or} />
+        <Text className="font-sans-light text-sm text-taupe">{t('catalog.loading')}</Text>
+      </Screen>
+    );
+  }
+
+  if (!product || isError) {
     return (
       <Screen>
         <Stack.Screen options={{ title: t('product.notFoundTitle') }} />
         <StateMessage
-          icon="search-outline"
-          title={t('product.notFoundHeading')}
-          description={t('product.notFoundBody')}
-          action={{ label: t('product.backToCatalog'), onPress: () => router.replace('/') }}
+          icon={notFound ? 'search-outline' : 'cloud-offline-outline'}
+          title={notFound ? t('product.notFoundHeading') : t('catalog.errorTitle')}
+          description={notFound ? t('product.notFoundBody') : t('catalog.errorBody')}
+          action={{
+            label: notFound ? t('product.backToCatalog') : t('catalog.retry'),
+            onPress: () => (notFound ? router.replace('/') : refetch()),
+          }}
         />
       </Screen>
     );

@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Entrega académica: escritura abierta en solicitudes para que la app
+    // pueda registrar pedidos sin autenticación. Restringir antes de producción.
+    match /requests/{requestId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -5,15 +5,17 @@ import { Text } from 'react-native';
 import { ProductGrid } from '@/components/catalog/ProductGrid';
 import { Screen } from '@/components/ui/Screen';
 import { StateMessage } from '@/components/ui/StateMessage';
-import { findProductByHandle } from '@/features/catalog/data/catalog.seed';
+import { useProducts } from '@/features/catalog/hooks/useProducts';
+import { resolveProduct } from '@/features/catalog/resolveProduct';
 import type { Product } from '@/features/catalog/types/product';
 import { useFavoritesStore } from '@/store/favorites.store';
 
 export default function FavoritesScreen() {
   const { t } = useTranslation();
   const handles = useFavoritesStore((state) => state.handles);
+  const { data: products } = useProducts();
   const favorites = handles
-    .map((handle) => findProductByHandle(handle))
+    .map((handle) => resolveProduct(handle, products))
     .filter((product): product is Product => product !== undefined);
 
   if (favorites.length === 0) {

@@ -1,79 +1,93 @@
 # Éclosion Bijoux — app móvil
 
-Aplicación para **Atelier Éclosion Bijoux**, joyería artesanal tejida a mano (Mulhouse, Francia). Permite explorar
-el catálogo real de la tienda y solicitar piezas o encargos sur mesure.
+Aplicación para **Atelier Éclosion Bijoux**, joyería artesanal tejida a mano (Mulhouse, Francia). Permite explorar el catálogo real de la tienda, cotizar piezas o encargos *sur mesure* y registrar solicitudes.
 
-Proyecto final de Desarrollo Móvil II — React Native, TypeScript y Expo.
+**Proyecto final — Desarrollo Móvil II (UAM)**  
+**Autor:** Juan José Arango Jaramillo  
+**Stack:** React Native · TypeScript · Expo SDK 57  
+**Repositorio:** https://github.com/Arango134204/atelier-eclosion-app
 
 ## Requisitos
 
-- Node.js 20 o superior (probado con Node 24)
-- Android: la app **Expo Go** (SDK 57) en el teléfono, o un emulador de Android Studio
+- Node.js 20 o superior
+- Android: **Expo Go** (SDK 57) o emulador de Android Studio
 
 ## Instalación y ejecución
 
 ```bash
 npm install
-npx expo start          # escanear el QR con Expo Go
-npx expo start --android  # abrir directamente en el emulador
+cp .env.template .env   # en Windows: copy .env.template .env
+npx expo start          # escanear QR con Expo Go
+npx expo start --android
 ```
 
-### Con el emulador de Android Studio
+### Probar el proceso principal en Android
 
-1. Abrir Android Studio → **Device Manager** → ▶ en el dispositivo (por ejemplo `Medium_Phone_API_37.0`). Esperar a que muestre la pantalla de inicio de Android.
-2. En la terminal (la de Android Studio: **View → Tool Windows → Terminal**), dentro de la carpeta del proyecto:
-   ```bash
-   npx expo start
-   ```
-3. Presionar `a`. La primera vez Expo instala Expo Go en el emulador; después la app abre directamente.
-4. Para recargar después de un cambio, presionar `r` en la terminal. Para detener el servidor, `Ctrl + C`.
+1. Abrir la app → pestaña **Créations**.
+2. Buscar o filtrar una pieza → abrir detalle → ajustar cantidad → **Composer ma demande**.
+3. En **Votre devis**: opcional sur mesure + zona de envío → **Continuer**.
+4. Completar **Vos coordonnées** → guardar.
+5. Ver la solicitud en **Mes demandes**.
+6. En el menú ☰ → **L'atelier**: mapa, centrar y seguimiento GPS.
 
-### En un teléfono Android
+### Firebase (opcional pero recomendado)
 
-Instalar **Expo Go** desde Play Store, conectarse a la misma red WiFi que el computador y escanear el QR que
-muestra `npx expo start`. Si la red bloquea la conexión, usar `npx expo start --tunnel`.
+Sin `.env` de Firebase la app funciona con persistencia local. Para que la artesana reciba solicitudes en la nube: `docs/firebase-setup.md`.
 
 ## Comandos útiles
 
 ```bash
-npm run typecheck   # verificación de TypeScript
-powershell -ExecutionPolicy Bypass -File scripts/generate-brand-assets.ps1   # regenerar iconos desde el logo
+npm run typecheck
+powershell -ExecutionPolicy Bypass -File scripts/generate-brand-assets.ps1
+python scripts/generate-informe-docx.py
 ```
+
+## HTTP del cliente
+
+| Uso | Endpoint |
+| --- | --- |
+| Listado | `GET https://ateliereclosionbijoux.com/products.json` |
+| Detalle | `GET https://ateliereclosionbijoux.com/products/{handle}.json` |
+
+Cliente Axios: `src/services/api/http.ts` · Mapper: `src/features/catalog/api/shopify.mapper.ts` · Hooks: `useProducts` / `useProduct`.
 
 ## Idiomas
 
-La app está en **francés** (idioma principal de la marca) y **español**. En la primera apertura usa español si el
-teléfono está en español y francés en cualquier otro caso. Se puede cambiar en el menú lateral (☰) → **FR / ES**, y
-la elección se recuerda.
+Francés (marca) + español. Selector en el Drawer. Textos en `src/i18n/locales/`.
 
-- Textos: `src/i18n/locales/fr.ts` y `src/i18n/locales/es.ts`. TypeScript obliga a que ambos tengan las mismas claves.
-- Para agregar un texto: crear la clave en `fr.ts`, traducirla en `es.ts` y usar `t('seccion.clave')` con `useTranslation()`.
+## Documentación
 
-## Identidad de marca
-
-- Logo oficial: `assets/brand/logo-original.png` (fuente: ateliereclosionbijoux.com).
-- Colores: dorado `#BC7C1C` y burdeos `#570A04` (del logo); marfil `#FAF6F0` y tinta `#1F1A17` como neutros.
-- Tipografías: Cormorant Garamond (títulos) y Jost (texto), en `assets/fonts/`.
+| Documento | Contenido |
+| --- | --- |
+| `docs/01-definicion-alcance.md` | Cliente, problema, reglas |
+| `docs/02-mapa-pantallas.md` | Navegación |
+| `docs/03-matriz-requisitos.md` | Cobertura del enunciado |
+| `docs/04-bitacora.md` | Avances por clase |
+| `docs/05-especificacion-mockups.md` | Spec Figma |
+| `docs/06-informe-final.md` | Informe + diagramas Mermaid |
+| `docs/Informe_Final_Eclosion_Bijoux.docx` | Informe Word (estilo Makumba) |
+| `docs/firebase-setup.md` | Cómo crear el proyecto Firebase |
+| `docs/evidencias/` | Capturas de prueba |
 
 ## Estructura
 
 ```
 src/
-├── app/                    Rutas (Expo Router)
-│   ├── _layout.tsx         Stack raíz + carga de fuentes
-│   ├── (drawer)/           Drawer: Inicio, El taller, La marca
-│   │   └── (tabs)/         Tabs: Catálogo, Favoritos, Mis solicitudes
-│   ├── product/[handle].tsx  Detalle dinámico
-│   └── +not-found.tsx
-├── components/             Componentes reutilizables (ui/, catalog/)
-├── features/catalog/       Tipos y datos del catálogo (API en el hito 3)
-├── theme/                  Colores y fuentes para props sin className
-└── utils/
-docs/                       Alcance, mapa de pantallas, matriz de requisitos, bitácora
+├── app/                 Rutas (Drawer + Tabs + Stack)
+├── components/          UI reutilizable
+├── features/
+│   ├── catalog/         API Shopify, mapper, Query
+│   ├── quote/           Reglas y cálculo
+│   ├── request/         Validación de contacto
+│   └── atelier/         Mapa + GPS
+├── store/               Zustand
+├── services/            HTTP + Firebase
+└── i18n/                FR / ES
 ```
 
-## Estado actual
+## Límites conocidos
 
-Hito 1 completado: base del proyecto, navegación Stack + Tabs + Drawer, ruta dinámica y componentes base.
-El catálogo usa temporalmente una copia local de las 9 piezas reales de la tienda. En el hito 3 se reemplaza por
-peticiones HTTP a la API de Shopify. Ver `docs/03-matriz-requisitos.md`.
+- Coordenadas del taller = centro de Mulhouse hasta confirmar dirección con la clienta.
+- Firestore requiere variables en `.env` (ver plantilla).
+- Reglas Firestore abiertas solo para entrega académica.
+- Fuera de alcance: pagos y autenticación.

@@ -36,7 +36,13 @@
         }
       ],
       "expo-image",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Éclosion Bijoux utilise votre position uniquement pour afficher votre emplacement sur la carte de l'atelier à Mulhouse."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

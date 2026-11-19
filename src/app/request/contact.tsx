@@ -13,7 +13,9 @@ import { parseDecimal } from '@/features/quote/calculateQuote';
 import { useQuote } from '@/features/quote/useQuote';
 import type { ContactDetails } from '@/features/request/types';
 import { hasErrors, validateContact, type ContactErrorCode } from '@/features/request/validateContact';
+import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { useAppLanguage } from '@/i18n/useAppLanguage';
+import { persistRequestRemote } from '@/services/firebase/requests.repository';
 import { useRequestDraftStore } from '@/store/requestDraft.store';
 import { useRequestsStore } from '@/store/requests.store';
 import { formatPrice } from '@/utils/formatPrice';
@@ -26,8 +28,11 @@ export default function ContactScreen() {
   const { product, breakdown, isValid } = useQuote();
   const draft = useRequestDraftStore();
   const addRequest = useRequestsStore((state) => state.add);
+  const markSent = useRequestsStore((state) => state.markSent);
+  const { isOnline } = useNetworkStatus();
   const [contact, setContact] = useState<ContactDetails>(EMPTY_CONTACT);
   const [submitted, setSubmitted] = useState(false);
+  const [saving, setSaving] = useState(false);
   const emailRef = useRef<TextInput>(null);
   const phoneRef = useRef<TextInput>(null);
   const messageRef = useRef<TextInput>(null);
@@ -55,10 +60,11 @@ export default function ContactScreen() {
 
   const update = (field: keyof ContactDetails) => (value: string) => setContact((current) => ({ ...current, [field]: value }));
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitted(true);
-    if (hasErrors(errors)) return;
+    if (hasErrors(errors) || saving) return;
 
+    setSaving(true);
     const saved = addRequest({
       productHandle: product.handle,
       productName: product.name,
@@ -75,13 +81,28 @@ export default function ContactScreen() {
         message: contact.message.trim(),
       },
     });
-    router.replace({ pathname: '/request/confirmation', params: { id: saved.id } });
+
+    let outcome: 'sent' | 'savedLocal' = 'savedLocal';
+    if (isOnline) {
+      try {
+        outcome = await persistRequestRemote(saved);
+        if (outcome === 'sent') markSent(saved.id);
+      } catch {
+        outcome = 'savedLocal';
+      }
+    }
+
+    setSaving(false);
+    router.replace({ pathname: '/request/confirmation', params: { id: saved.id, outcome } });
   };
 
   return (
     <Screen>
       <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView contentContainerClassName="gap-7 px-6 pb-10 pt-4" keyboardShouldPersistTaps="handled">
+          {!isOnline ? (
+            <Text className="font-sans text-xs leading-5 text-bordeaux">{t('network.offline')}</Text>
+          ) : null}
           <Text className="font-sans-light text-base leading-6 text-taupe">{t('contact.intro')}</Text>
 
           <TextField
@@ -138,7 +159,7 @@ export default function ContactScreen() {
               label={`${product.name} × ${draft.quantity}`}
               value={formatPrice(breakdown.total, language, product.currency)}
             />
-            <AppButton label={t('contact.submit')} onPress={submit} />
+            <AppButton label={saving ? '…' : t('contact.submit')} onPress={submit} disabled={saving} />
           </View>
         </BottomActionBar>
       </KeyboardAvoidingView>

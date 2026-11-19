@@ -7,12 +7,13 @@ import type { SavedRequest } from '@/features/request/types';
 type NewRequest = Omit<SavedRequest, 'id' | 'number' | 'createdAt' | 'status'>;
 
 /**
- * TEMPORAL (hito 2): las solicitudes se guardan solo en este teléfono.
- * En el hito 4 se envían a Firestore para que la artesana las reciba.
+ * Solicitudes visibles en el teléfono.
+ * Siempre se guardan en AsyncStorage; si Firestore responde, el estado pasa a `sent`.
  */
 interface RequestsState {
   requests: SavedRequest[];
-  add: (request: NewRequest) => SavedRequest;
+  add: (request: NewRequest, status?: SavedRequest['status']) => SavedRequest;
+  markSent: (id: string) => void;
 }
 
 const formatNumber = (sequence: number) => `ÉC-${String(sequence).padStart(4, '0')}`;
@@ -21,17 +22,21 @@ export const useRequestsStore = create<RequestsState>()(
   persist(
     (set, get) => ({
       requests: [],
-      add: (request) => {
+      add: (request, status = 'saved') => {
         const saved: SavedRequest = {
           ...request,
           id: `${Date.now()}`,
           number: formatNumber(get().requests.length + 1),
           createdAt: new Date().toISOString(),
-          status: 'saved',
+          status,
         };
         set((state) => ({ requests: [saved, ...state.requests] }));
         return saved;
       },
+      markSent: (id) =>
+        set((state) => ({
+          requests: state.requests.map((item) => (item.id === id ? { ...item, status: 'sent' } : item)),
+        })),
     }),
     {
       name: 'eclosion-requests',
