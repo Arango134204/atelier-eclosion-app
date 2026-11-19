@@ -146,11 +146,36 @@ export const fr = {
     offline: 'Hors ligne — certaines actions seront enregistrées sur cet appareil.',
   },
   about: {
-    eyebrow: 'Atelier Éclosion Bijoux',
-    title: 'Révéler la lumière de celle qui la porte',
-    body: "Des créations artisanales inspirées de la Colombie, où couleurs, savoir-faire et féminité se rencontrent. Chaque pièce est imaginée et tissée à la main, perle après perle, dans l'atelier de Mulhouse.",
-    signature: 'Tissés à la main · Inspirés de la Colombie',
-    series: 'Créés en petites séries',
+    eyebrow: 'La créatrice',
+    title: 'Mariana',
+    greeting: 'Hola hola ! Moi c’est Mariana. Bienvenue dans mon univers.',
+    intro:
+      'Je suis Colombienne, maman de deux enfants et la créatrice d’Atelier Éclosion Bijoux. Si vous êtes ici, c’est que nous partageons probablement le goût des objets qui ont une histoire, de l’artisanat et des créations réalisées avec le cœur.',
+    childhoodTitle: 'Créer, toujours',
+    childhood:
+      'J’ai toujours aimé créer. Enfant, j’ai développé mon côté artistique avec la danse, la peinture et la sculpture. Au collège, je confectionnais déjà des bracelets en fil que je vendais à mes camarades.',
+    franceTitle: 'De la Colombie à la France',
+    france:
+      'En 2014, après mon baccalauréat en Colombie, je suis arrivée en France pour une année à l’étranger. Cette expérience devait être temporaire… mais la vie en a décidé autrement.',
+    commerceTitle: 'Le commerce international',
+    commerce:
+      'Pendant plus de sept ans, j’ai évolué dans le commerce international : marchés latino-américains dans une PME à Saverne, puis coordinatrice import-export dans une multinationale. Ces expériences m’ont appris à gérer des projets, comprendre les clients et bâtir des relations de confiance.',
+    craftTitle: 'Le retour au métier de main',
+    craft:
+      'Au fond, la création ne m’a jamais quittée. Au fil des années, j’ai retrouvé le plaisir de fabriquer des bijoux, d’abord pour moi, puis pour mes proches. Je me suis passionnée pour le tissage de perles Miyuki et de perles de rocaille — patience, précision, minutie. Chaque création est réalisée une à une, à la main.',
+    colombiaTitle: 'L’inspiration colombienne',
+    colombia:
+      'Ma plus grande source d’inspiration reste mon pays d’origine. Créer cette micro-entreprise réunit deux univers qui me définissent : mon expérience dans le commerce international et ma passion pour l’artisanat.',
+    philosophyTitle: 'Plus qu’un accessoire',
+    philosophy:
+      'Je crois qu’un bijou ne devrait pas être un simple accessoire oublié après quelques portés. J’ai choisi de créer des bijoux artisanaux qui racontent une histoire, prennent le temps d’être fabriqués et accompagnent celles qui les portent pendant de nombreuses années.',
+    materialsTitle: 'Les matières',
+    materials:
+      'Chaque modèle est imaginé et confectionné à la main, avec des perles Miyuki, des perles de rocaille, des cristaux de verre et des matériaux soigneusement sélectionnés. Derrière chaque création se cachent des heures de travail, de réflexion et de passion.',
+    closing:
+      'Plus qu’une marque de bijoux, je souhaite partager un univers où se rencontrent l’élégance, la couleur, la féminité et les racines colombiennes. Bienvenue dans mon histoire. J’espère que mes créations trouveront bientôt une place dans la vôtre.',
+    signature: 'Mariana',
+    series: 'Tissé à la main · Inspiré de la Colombie · Mulhouse',
   },
   notFound: {
     title: 'Page introuvable',

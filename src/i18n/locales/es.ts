@@ -147,11 +147,36 @@ export const es: Translation = {
     offline: 'Sin conexión — algunas acciones se guardarán en este teléfono.',
   },
   about: {
-    eyebrow: 'Atelier Éclosion Bijoux',
-    title: 'Revelar la luz de quien la lleva',
-    body: 'Creaciones artesanales inspiradas en Colombia, donde se encuentran el color, el oficio y la feminidad. Cada pieza se imagina y se teje a mano, perla a perla, en el taller de Mulhouse.',
-    signature: 'Tejidas a mano · Inspiradas en Colombia',
-    series: 'Creadas en pequeñas series',
+    eyebrow: 'La creadora',
+    title: 'Mariana',
+    greeting: '¡Hola hola! Yo soy Mariana. Bienvenida a mi universo.',
+    intro:
+      'Soy colombiana, mamá de dos hijos y la creadora de Atelier Éclosion Bijoux. Si estás aquí, probablemente compartimos el gusto por los objetos con historia, la artesanía y las creaciones hechas con el corazón.',
+    childhoodTitle: 'Crear, siempre',
+    childhood:
+      'Siempre me ha gustado crear. De niña desarrollé mi lado artístico con la danza, la pintura y la escultura. En el colegio ya hacía pulseras de hilo que vendía a mis compañeras.',
+    franceTitle: 'De Colombia a Francia',
+    france:
+      'En 2014, tras mi bachillerato en Colombia, llegué a Francia para un año en el extranjero. Debía ser temporal… pero la vida decidió otra cosa.',
+    commerceTitle: 'El comercio internacional',
+    commerce:
+      'Durante más de siete años trabajé en comercio internacional: mercados latinoamericanos en una pyme de Saverne y luego como coordinadora import-export en una multinacional. Ahí aprendí a gestionar proyectos, entender a las clientas y construir confianza.',
+    craftTitle: 'Volver al oficio de las manos',
+    craft:
+      'En el fondo, la creación nunca me dejó. Con los años recuperé el placer de hacer joyas, primero para mí y luego para mis cercanos. Me apasioné por el tejido de perlas Miyuki y de rocalla: paciencia, precisión y detalle. Cada pieza se hace una a una, a mano.',
+    colombiaTitle: 'La inspiración colombiana',
+    colombia:
+      'Mi mayor fuente de inspiración sigue siendo mi país. Crear esta microempresa une dos mundos que me definen: mi experiencia en comercio internacional y mi pasión por la artesanía.',
+    philosophyTitle: 'Más que un accesorio',
+    philosophy:
+      'Creo que una joya no debería ser un accesorio que se olvida tras usarlo unas pocas veces. Elijo crear joyas artesanales que cuentan una historia, que toman tiempo en hacerse y que acompañan a quien las lleva durante muchos años.',
+    materialsTitle: 'Los materiales',
+    materials:
+      'Cada modelo se imagina y se confecciona a mano, con perlas Miyuki, perlas de rocalla, cristales de vidrio y materiales cuidadosamente elegidos. Detrás de cada creación hay horas de trabajo, reflexión y pasión.',
+    closing:
+      'Más que una marca de joyas, quiero compartir un universo donde se encuentran la elegancia, el color, la feminidad y las raíces colombianas. Bienvenida a mi historia. Espero que mis creaciones encuentren pronto un lugar en la tuya.',
+    signature: 'Mariana',
+    series: 'Tejida a mano · Inspirada en Colombia · Mulhouse',
   },
   notFound: {
     title: 'Página no encontrada',
